@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mireye Earth | Ask API Interface</title>
+    <title>Mireye Earth | Ask & Fetch API</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -21,11 +21,22 @@
                 <div class="logo-icon"></div>
                 <h1>Mireye Earth</h1>
             </div>
-            <p class="subtitle">Natural-language Q&A over US coordinates</p>
+            <p class="subtitle">Geospatial Intelligence Interface</p>
         </header>
 
         <section class="glass-panel request-panel">
-            <form id="askForm" class="form-container">
+            <form id="apiForm" class="form-container">
+                
+                <div class="mode-selector">
+                    <label class="radio-label">
+                        <input type="radio" name="mode" value="ask" checked>
+                        <span>Ask (Natural Language Q&A)</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="mode" value="fetch">
+                        <span>Fetch (Raw Fields)</span>
+                    </label>
+                </div>
 
                 <div class="form-group">
                     <label for="address">Address (Use Address OR Coordinates)</label>
@@ -43,9 +54,19 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <!-- Ask Mode Inputs -->
+                <div class="form-group" id="askInputs">
                     <label for="query">Question</label>
-                    <textarea id="query" rows="4" placeholder="Ask something about these coordinates..." required></textarea>
+                    <textarea id="query" rows="4" placeholder="Ask something about these coordinates..."></textarea>
+                </div>
+
+                <!-- Fetch Mode Inputs -->
+                <div class="form-group hidden" id="fetchInputs">
+                    <label for="fields">Select Fields</label>
+                    <select id="fields" multiple size="6" class="custom-select">
+                        <option value="" disabled>Loading fields catalog...</option>
+                    </select>
+                    <small style="color: var(--text-muted); margin-top: 0.5rem; display: block;">Hold Ctrl/Cmd to select multiple fields.</small>
                 </div>
 
                 <button type="submit" class="submit-btn" id="submitBtn">
